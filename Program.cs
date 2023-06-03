@@ -1,60 +1,99 @@
-﻿Console.WriteLine("Задание 25");
-Console.Clear();
+﻿Console.Clear();
+Console.WriteLine("Задание 1");
 
-int Count(int number, int number2)
+int Check (int size)
 {
-    int summ = 1;
-    for(int i = 1; i <= number2; i++)
+    int count = 0;
+    int[] arr = new int[size];
+    for(int i = 0; i < arr.Length; i++)
     {
-        summ *= number; 
+        arr[i] = new Random().Next(100, 1000);
+    }
+
+    Console.WriteLine($"[{String.Join(",", arr)}]");
+    
+    for(int i = 0; i < arr.Length; i++)
+    {
+        if (arr[i] % 2 == 0)
+        {
+            count++;
+        }
+    }
+    return count;
+}
+
+Console.Write("list_size: ");
+int num = int.Parse(Console.ReadLine());
+
+Console.WriteLine(Check(num));
+
+Console.WriteLine("Задание 2");
+
+int Check2 (int size)
+{
+    int summ = 0;
+    int[] arr = new int[size];
+    for(int i = 0; i < arr.Length; i++)
+    {
+        arr[i] = new Random().Next(1, 100);
+    }
+
+    Console.WriteLine($"[{String.Join(",", arr)}]");
+    
+    for(int i = 0; i < arr.Length; i++)
+    {
+        if (i % 2 != 0)
+        {
+            summ += arr[i];
+        }
     }
     return summ;
 }
 
-Console.Write("Число: ");
-int num = int.Parse(Console.ReadLine());
-
-Console.Write("Степень: ");
-int num1 = int.Parse(Console.ReadLine());
-
-Console.WriteLine(Count(num, num1));
-
-Console.WriteLine("Задание 27");
-
-int AllCounter(int number3)
-{
-    int summ1 = 0;
-    while(number3 / 10 > 1)
-    {
-        int del = number3 % 10;
-        summ1 += del; 
-        number3 /= 10;
-    }
-    summ1 += number3;
-    return summ1;
-}
-
-Console.Write("Число: ");
+Console.Write("list_size: ");
 int num2 = int.Parse(Console.ReadLine());
 
-Console.WriteLine(AllCounter(num2));
+Console.WriteLine(Check2(num2));
 
-Console.WriteLine("Задание 29");
+Console.WriteLine("Задание 3");
 
-int[] AllCounter2(int n)
+double Check3 (int size)
 {
-    int[] num7 = new int[n];
-    for(int i = 0; i < 8; i++)
+    double summ = 0;
+    double[] arr = new double[size];
+    for(int i = 0; i < arr.Length; i++)
     {
-        num7[i] = new Random().Next(101);
+        arr[i] = new Random().NextDouble();
     }
-    return num7;
-}
 
-int[] arr = AllCounter2(8);
-
-for(int j = 0; j < 8; j++)
-{
-    Console.Write($"{arr[j]}, ");
+    Console.WriteLine($"[{String.Join(",", arr)}]");
     
+    double max = arr[0];
+    double min = arr[0];
+    for(int i = 1; i < arr.Length; i++)
+    {
+        if (max < arr[i])
+        {
+            if (max <= min)
+            {
+                max = min;
+            }
+            max = arr[i];
+        }
+        else
+        {
+            if (arr[i] < min)
+            {
+                min = arr[i];
+            }
+        }
+    }
+    Console.WriteLine($"max -> {max}");
+    Console.WriteLine($"min -> {min}");
+    return max - min;
 }
+
+Console.Write("list_size: ");
+int num3 = int.Parse(Console.ReadLine());
+
+Console.WriteLine(Check3(num3));
